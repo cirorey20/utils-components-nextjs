@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import CarruselImages from './CarruselImages';
+import CarruselIndicators from './CarruselIndicators';
 
 interface CarruselClientProps {
   items: string[];
@@ -101,14 +102,11 @@ const CarruselClient: React.FC<CarruselClientProps> = ({ items }) => {
 
         {/* Indicadores (puntos) */}
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-          {items.map((_, index) => (
-            <button
-              key={index}
-              className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-blue-500' : 'bg-gray-400'
-                }`}
-              onClick={() => handleDotClick(index)}
-            />
-          ))}
+          <CarruselIndicators 
+            items={items}
+            currentIndex={currentIndex}
+            toClick={(index) => setCurrentIndex(index)}
+          />
         </div>
       </div>
 
